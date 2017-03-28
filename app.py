@@ -8,7 +8,7 @@ from bottle import route,run
 
 bottle.debug(True)
 
-@get('/')
+@route('/')
 def index():
 	return "<h1>Hola Mundo!!!</h1>"
 
