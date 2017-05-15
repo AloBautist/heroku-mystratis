@@ -10,12 +10,16 @@
       font-size: large;
     }
 
+  input, button {
+    display: block;
+    width: 100%;
+    text-align: center; 
+  }
   div {
     /*padding: 20px;*/
   }
   footer{ 
-       position: fixed;     
-       text-align: center;    
+       position: fixed;        
        bottom: 0px; 
        width: 100%;
    }  
@@ -24,15 +28,22 @@
 </head>
 <body>
  
-<div id="log"></div>
- 
-<input type="text" id="response" disabled="disabled" style="display: block; width: 100%;"  value="hola">
+<header> 
+  <input type="text" id="response" disabled="disabled"  value="hola">
+</header>
+
 <footer>
-<button type="button" id="submit" style="width: 100%; display: block;">Submit</button>
+  <button type="button" id="submit">Submit</button>
 </footer>
 
 <script>
 var points = []
+
+
+$(document).ready(function (argument) {
+  $("#response").val( " results: {{area}} {{type}} {{points}} " );
+})
+
 
 $( "#submit" ).on( "click", function( event ) {
   alert("ready for logic" + points);
@@ -40,8 +51,10 @@ $( "#submit" ).on( "click", function( event ) {
 });
 
 $( document ).on( "click", function( event ) {
-  $("#response").val( "pageX: " + event.pageX + ", pageY: " + event.pageY );
-  points += [event.pageX, event.pageY];
+  points.push( { x : event.pageX, y : event.pageY } ); 
+
+  $("#response").val( "Current point X:" + event.pageX + ", Y:" + event.pageY + " TOTAL:" + points.length );
+
   alert(points);
 });
 </script>
